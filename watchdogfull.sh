@@ -160,7 +160,7 @@ EOF
     chown root:root "$LOG_PATH"
     
     # Install cron job
-    CRON_CMD="*/5 * * * * $MONITOR_SCRIPT"  # Fixed cron syntax
+    CRON_CMD="*/2 * * * * $MONITOR_SCRIPT"  # Fixed cron syntax
     
     if crontab -l 2>/dev/null | grep -Fq "$MONITOR_SCRIPT"; then
         log_message "Cron job already exists." "$YELLOW"
