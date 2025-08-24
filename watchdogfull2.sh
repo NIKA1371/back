@@ -312,32 +312,32 @@ show_status() {
     
     # Check if script exists
     if [[ -f "$MONITOR_SCRIPT" ]]; then
-        echo "? Monitor script: INSTALLED"
+        echo "✓ Monitor script: INSTALLED"
     else
-        echo "? Monitor script: NOT INSTALLED"
+        echo "✗ Monitor script: NOT INSTALLED"
         return
     fi
     
     # Check cron job
     if crontab -l 2>/dev/null | grep -Fq "$MONITOR_SCRIPT"; then
-        echo "? Cron job: ACTIVE"
+        echo "✓ Cron job: ACTIVE"
     else
-        echo "? Cron job: NOT FOUND"
+        echo "✗ Cron job: NOT FOUND"
     fi
     
     # Check log file
     if [[ -f "$LOG_FILE" ]]; then
-        echo "? Log file: EXISTS ($(wc -l < "$LOG_FILE") lines)"
+        echo "✓ Log file: EXISTS ($(wc -l < "$LOG_FILE") lines)"
         echo "  Last modified: $(stat -c %y "$LOG_FILE")"
     else
-        echo "? Log file: NOT FOUND"
+        echo "✗ Log file: NOT FOUND"
     fi
     
     # Check lock file
     if [[ -f "/var/run/backhaul-monitor.lock" ]]; then
-        echo "? Lock file: EXISTS (monitor may be running)"
+        echo "⚠ Lock file: EXISTS (monitor may be running)"
     else
-        echo "? Lock file: CLEAN"
+        echo "✓ Lock file: CLEAN"
     fi
     
     echo "----------------------------------------"
